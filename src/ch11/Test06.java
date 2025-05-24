@@ -53,6 +53,12 @@ class Book implements Comparable<Book> {
 	public String toString() {
 		return String.format("도서명:\t%s\t저자:\t%s\t출판연도:\t%d\tISBN:\t%s", title, author, publicationYear, isbn);
 	}
+
+	@Override
+	public int compareTo(Book o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 
 class Library {
@@ -66,17 +72,17 @@ class Library {
 	// 책 추가 (용량 초과 시 OverflowException 발생)
 	public void addBook(Book book) {
 		if (books.size()>=CAPACITY) {
-			throw new OverflowException("더 이상 책 추가 불가능")
+			throw new OverflowException("더 이상 책 추가 불가능");
 		} 
-		book.add(book);
+		books.add(book);
 	}
 
 	// 책 삭제 (빈 목록에서 삭제 시 UnderflowException 발생)
 	public Book removeBook() {
-		if(books.isEmpty() {
-			throw new UnderflowException("삭제할 책이 없음")
+		if(books.isEmpty()) {
+			throw new UnderflowException("삭제할 책이 없음");
 		}
-		return books.remove(book.size();
+		return books.remove(books.size());
 	}
 
 	public void printBooks(String msg) {
@@ -104,13 +110,6 @@ class Library {
 		return null;
 	}
 }
-//		for ( int i = 0 ; i < books.size() ; i++) {
-//			if (books.getTile().equals(title)) {
-//				return book;
-//			}
-//		} return null;
-//	}
-//}
 
 public class Test06 {
 	public static void main(String[] args) {
@@ -145,12 +144,12 @@ public class Test06 {
 		Book book6 = new Book("스프링", "홍길동", 2025, "99");
 		// 예외 처리를 적용한 책 추가 및 삭제
 		try { 
-			libraray.addBook(book1);
-			libraray.addBook(book2);
-			libraray.addBook(book3);
-			libraray.addBook(book4);
-			libraray.addBook(book5);
-			libraray.addBook(book6);
+			library.addBook(book1);
+			library.addBook(book2);
+			library.addBook(book3);
+			library.addBook(book4);
+			library.addBook(book5);
+			library.addBook(book6);
 			// 도서관의 용량을 초과하여 책을 추가 (예외 발생)
 		} catch (Exception e) {
 			e.getStackTrace();
