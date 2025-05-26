@@ -98,7 +98,6 @@ class Library {
 
 	public void sortBooksByISBN() {
 		 books.sort(Comparator.comparing(Book::getIsbn));
-		
 	}
 
 	public Book searchBookByTitle(String title) {

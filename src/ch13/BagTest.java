@@ -1,12 +1,11 @@
 package ch13;
 
-class Bag<T, N> {
+class Bag<T extends Solid> {
 	private T thing;
-	private N name;
+	private String owner;
 	
-	public Bag(T thing, N name) {
+	public Bag(T thing) {
 		this.thing = thing;
-		this.name = name;
 	}
 	
 	public T getThing() {
@@ -17,41 +16,44 @@ class Bag<T, N> {
 		this.thing = thing;
 	}
 
-	public N getName() {
-		return name;
-	}
-
-	public void setName(N name) {
-		this.name = name;
-	}
-
 	void showType() {
 		System.out.println("T의 타입은 " + thing.getClass().getName());
-		System.out.println("N의 타입은 " + name.getClass().getName());
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+	
+boolean isSameOwner(Bag<?> obj) {
+	if(this.owner.equals(obj.getOwner()))
+		return true;
+	return false;
 	}
 }
 
-class Book {
-	public String toString() {
-		return "책";
-	}
-}
+class Solid{}
+class Liquid{}
 
-class PencilCase{}
-class Notebook {}
+class Book extends Solid{}
+class PencilCase extends Solid{}
+class Notebook extends Solid{}
+
 
 public class BagTest {
 	public static void main(String[] args) {
 		
-		Bag<Book, String> bag = new Bag<Book, String>(new Book(), "과학");
+		Bag<Book> bag = new Bag<>(new Book());
+		Bag<PencilCase> bag2 = new Bag<>(new PencilCase());
+
+		bag.setOwner("김푸름");
+		bag2.setOwner("김푸름");
 		
-		bag.showType();
-
-			Book book = bag.getThing();
-			String name = bag.getName()	;
-			
-			System.out.println("Thing is : " + book);
-			System.out.println("name is : " + name);
-
+		boolean result = bag.isSameOwner(bag2);
+		if(result) System.out.println("소유자가 동일합니다.");
+		else System.out.println("소유자가 다릅니다.");
 	}
 }
