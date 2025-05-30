@@ -8,7 +8,7 @@ package 자료구조2장;
 
 import java.util.Arrays;
 import java.util.Random;
-public class 실습2_06다차원배열 {
+public class train_실습2_6다차원배열 {
 
 	public static void main(String[] args) {
 		int [][]A = new int[2][3];

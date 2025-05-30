@@ -8,7 +8,7 @@ package 자료구조2장;
 import java.util.Arrays;
 
 import java.util.Random;
-public class 실습2_04메소드배열전달 {
+public class train_실습2_4메소드배열전달 {
 	static int top = 0;
 	static final int MAX_LENGTH = 20;
 	public static void main(String[] args) {

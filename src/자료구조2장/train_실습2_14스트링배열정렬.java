@@ -3,7 +3,7 @@ package 자료구조2장;
 //입력받은 10진수를 2진수 ~ 36진수로 기수 변환하여 출력
 
 import java.util.Scanner;
-public class 실습2_12기수변환교재코드 {
+public class train_실습2_14스트링배열정렬 {
 //--- 정숫값 x를 r진수로 변환하여 배열 d에 아랫자리부터 넣어 두고 자릿수를 반환 ---//
 static int cardConv(int x, int r, char[] d) {
    int digits = 0;                        // 변환 뒤 자릿수

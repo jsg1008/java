@@ -10,7 +10,7 @@ package 자료구조2장;
  * StringBuilder: mutable - 문자열이 자주 변경시 사용, append, insert, delete, reverse 함수 사용
  * 
  */
-public class 실습2_12_1기수변환_일반화 {
+public class train_실습2_12기수변환교재코드 {
 
     // n진수를 10진수로 변환하는 함수
     public static int toDecimal(String number, int baseN) {

@@ -12,7 +12,7 @@ package 자료구조2장;
  * 1은 약수가 하나뿐이라 소수가 될 수 없음.
  * 2는 약수가 두 개(1과 자기 자신)뿐이므로 소수이며, 유일한 짝수 소수
  */
-public class 실습2_07소수나열 {
+public class train_실습2_7소수나열 {
     // 0 이상 n 이하의 소수 개수를 반환하는 함수
     static int primeCount(int n, int []data) {
         if (n < 2) return 0; // 0과 1은 소수가 아님

@@ -6,7 +6,7 @@ package 자료구조2장;
 //교재 67 - 실습 2-5
 //2번 실습
 import java.util.Random;
-public class 실습2_05정수배열정렬 {
+public class train_실습2_5정수배열정렬 {
 	public static void main(String[] args) {
 		int []data = new int[10];
 		inputData(data); //난수를 10 ~ 60 사이에 생성
