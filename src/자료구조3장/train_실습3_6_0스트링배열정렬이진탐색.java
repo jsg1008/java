@@ -14,6 +14,7 @@ public class train_실습3_6_0스트링배열정렬이진탐색 {
 		for (String ss : arr) {
 			System.out.print(ss+" ");
 		}
+		System.out.println();
 	}
 	
 	static void sortData(String [] arr) {
@@ -31,6 +32,34 @@ public class train_실습3_6_0스트링배열정렬이진탐색 {
 		String ttt = arr[i];
 		arr[i]=arr[j];
 		arr[j]=ttt;
+	}
+	
+	static int linearSearch(String [] arr, String key) {
+		for (int i=0; i<arr.length; i++) {
+			if (arr[i].equals(key)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	static int binarySearch(String [] arr, String key) {
+		int low = 0;
+		int high = arr.length-1;
+		
+		while(low<=high) {
+			int mid = (low + high)/2;
+			int cmp = key.compareTo(arr[mid]);
+			
+			if (cmp==0) {
+				return mid;
+			} else if (cmp<0) {
+				high = mid-1;
+			} else {
+				low = mid+1;
+			}
+		}
+		return -1;
 	}
 	
 

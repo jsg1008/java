@@ -23,15 +23,15 @@ class Point2 {
 
 	@Override
 	public String toString() {
-		return "ix= "+ ix +", iy= " + iy ;
+		return "("+"ix= "+ ix +", iy= " + iy + ")" ;
 	}
 
 	@Override
 	public boolean equals(Object p) {
-		if (this==p) return true;
-		if (!(p instanceof Point2)) return false;
-		Point2 s = (Point2) p; 
-		return this.ix == s.ix && this.iy ==  s.iy;
+		if(this==p) return true;
+		if(!(p instanceof Point2)) return false;
+		Point2 point = (Point2) p;
+		return this.ix==point.ix && iy==point.iy;
 	}
 }
 
@@ -43,14 +43,14 @@ class objectStack{
 	 */
 	public class EmptyGenericStackException extends Exception {
 		public EmptyGenericStackException () {
-			super("스택이 비어있음");
+			super("스택이 비어있습니다");
 		}
 	}
 
 	//--- 실행시 예외: 스택이 가득 참 ---//
 	public class OverflowGenericStackException extends RuntimeException {
 		public OverflowGenericStackException() {
-			super("스택이 가득찼음");
+			super("스택이 가득찼습니다");
 		}
 	}
 
@@ -97,8 +97,12 @@ class objectStack{
 
 //--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
 	public int indexOf(Point2 x) {
-		int index = data.indexOf(x);
-		return index >=0 ? index : -1;
+		for (int i=top-1; i>=0; i-- ) {
+			if (data.get(i).equals(x)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 //--- 스택의 크기를 반환 ---//
@@ -159,7 +163,7 @@ public class train_실습4_2_2객체스택_리스트 {
 				try {
 					s.push(p);
 				} catch(objectStack.OverflowGenericStackException e) {
-					System.out.println("stack이 가득찼있습니다.");
+					System.out.println("stack이 가득찼습니다.");
 				}
 				break;
 

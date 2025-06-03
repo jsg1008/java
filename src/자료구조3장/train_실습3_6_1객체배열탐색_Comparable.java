@@ -40,17 +40,29 @@ class PhyscData2 implements Comparable<PhyscData2>{
 	String name;
 	int height;
 	double vision;
+	
+	public PhyscData2(String name, int height, double vision) {
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
 
 	@Override
 	public String toString() {//[홍길동,162,0.3] 형태로 리턴한다 
-		
+		return "["+name+","+height+","+vision+"]";
 	}
+		
 	@Override
 	public int compareTo(PhyscData2 p) {
-		// name 비교 버젼
-		// height 비교 버젼
+		int result = this.name.compareTo(p.name);
+		if (result==0) {
+			result = Integer.compare(this.height, p.height);
+			if (result==0) {
+				result = Double.compare(this.vision, p.vision);
+			}
+		}
+		return result;
 	}
-
 }
 public class train_실습3_6_1객체배열탐색_Comparable {
 	public static void main(String[] args) {
@@ -88,7 +100,54 @@ public class train_실습3_6_1객체배열탐색_Comparable {
 		resultIndex = Arrays.binarySearch(data, key);//compareTo()를 사용되는지를 확인-이해할 수 있어야 한다 
 		System.out.println("\nArrays.binarySearch(<나동,164,0.6>): result index = " + resultIndex);
 	}
-	
-	
+		private static void showData(String msg, PhyscData2[] data) {
+			System.out.println(msg+" : ");
+			for (PhyscData2 ppp : data) {
+				System.out.print(ppp+" ");
+			}
+			System.out.println();
+		}
+		
+		private static void sortData(PhyscData2[] data) {
+			for (int i=1; i<data.length; i++) {
+				int j;
+				PhyscData2 tmp = data[i];
+				for(j=i; (j>0 && data[j-1].compareTo(tmp)>0); j--) {
+					data[j]=data[j-1];
+				}
+				data[j]=tmp;
+			}
+		}
+		
+		private static void reverse(PhyscData2[] data) {
+			for (int i=0; i<(data.length/2); i++) {
+				PhyscData2 ttt = data[i];
+				data[i]=data[data.length-i-1];
+				data[data.length-i-1]=ttt;
+		}
+	}
+		private static int linearSearch(PhyscData2[] data, PhyscData2 key) {
+			for (int i=0; i<data.length; i++) {
+				if (data[i].compareTo(key)==0) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		private static int binarySearch(PhyscData2[] data, PhyscData2 key) {
+			int low=0;
+			int high=data.length-1;
+			
+			while (low <= high) {
+				int mid = (low + high) / 2;
+			    int ttt = data[mid].compareTo(key);
 
+			    if (ttt == 0) return mid;
+			    else if (ttt < 0) low = mid + 1;
+			    else high = mid - 1;
+			}
+			return -(low + 1);
+		    // 실패 시 삽입 위치는 low
+		}
 }

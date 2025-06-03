@@ -12,9 +12,32 @@ class PhyscData3 {
 	String name;
 	int height;
 	double vision;
+	
+	public PhyscData3(String name, int height, double vision) {
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public double getVision() {
+		return vision;
+	}
+	
+	public String toString() {
+		return "[" + name + ", " + height + ", " + vision + "]";
+	}
 }
-class NameHeightVision implements Comparator<PhyscData4>{
+
+class NameHeightVision implements Comparator<PhyscData3>{
+	
 
 }
 class NameOrder implements Comparator<PhyscData3>{
