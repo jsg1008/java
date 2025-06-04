@@ -13,26 +13,55 @@ import java.util.Comparator;
 * Arrays.sort(array, myComparator);
 * Collections.sort(list, new MyComparator());
 */
-class myComparator implements Comparator<Student>{
-	int compare(Student s1, Student s2) {
-		return s1.compareTo
-	}
-}
-
 
 class Fruit4 {
 	String name;
 	int price;
 	String expire;
+	
+	public Fruit4(String name, int price, String expire) {
+		this.name = name;
+		this.price = price;
+		this.expire = expire;
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getExpire() {
+		return expire;
+	}
+	
+	public String toString() {
+		return "Fruit4 [" + name + ", " + price + ", " + expire + "]";
+	}
 }
 //교재 123~129 페이지 참조하여 구현
-class FruitName implements Comparator<Fruit4>{}
-class FruitPrice implements Comparator<Fruit4>{}
+class FruitName implements Comparator<Fruit4>{
 
-public class train_실습3_8_1객체배열정렬검색_람다식 {
+	@Override
+	public int compare(Fruit4 o1, Fruit4 o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
+}
+class FruitPrice implements Comparator<Fruit4>{
 
-	private static void sortData(Fruit4[] arr, Comparator<Fruit4> cc_price) {}
+	@Override
+	public int compare(Fruit4 o1, Fruit4 o2) {
+		return Integer.compare(o1.getPrice(), o2.getPrice());
+	}
+}
+
+public class Train_실습3_8_1객체배열정렬검색_람다식 {
+
+	private static void sortData(Fruit4[] arr, Comparator<Fruit4> cc_price) {
+	    Arrays.sort(arr, cc_price);
+	}
 
 	public static void main(String[] args) {
 
@@ -42,14 +71,6 @@ public class train_실습3_8_1객체배열정렬검색_람다식 {
 				new Fruit4("복숭아", 50, "2023-5-18"), 
 				new Fruit4("수박", 880, "2023-5-28"),
 				new Fruit4("산딸기", 10, "2023-9-8") };
-		
-		Arrays.sort(arr,  new Comparator<Fruit4>c){
-			int compare(Fruit4 f1, Fruit4 f2) {
-				return f1.name.compareTo(f2.name);
-			}
-		}
-		
-		Arrays.sort(arr, (f1, f2) -> f1.name.compareTo(f2.name));
 		
 		System.out.println("\n정렬전 객체 배열: ");
 		showData("정렬전 객체", arr);
@@ -112,6 +133,32 @@ public class train_실습3_8_1객체배열정렬검색_람다식 {
 		sortData(arr, cc_price);
 		System.out.println("\ncomparator 정렬(가격)후 객체 배열: ");
 		showData("comparator를 사용한 정렬후:", arr);	
+	}
+
+
+	private static void showData(String msg, Fruit4[] arr) {
+		for (Fruit4 ttt : arr) {
+			System.out.println(msg+ ttt);
+		}
+		System.out.println();
+	}
+	private static int binarySearch(Fruit4[] arr, Fruit4 newFruit4, Comparator<Fruit4> cc_price) {
+		int low = 0;
+		int high = arr.length-1;
+		
+		do {
+			int mid = (low + high)/2 ;
+			int temp = cc_price.compare(arr[mid], newFruit4);
+			if (temp==0) {
+				return mid;
+			}
+			else if (temp < 0) {
+				 low=mid+1;
+			}
+			else high=mid-1;
+		} 
+		while (low<=high);
+		return -1;
 	}
 }
 

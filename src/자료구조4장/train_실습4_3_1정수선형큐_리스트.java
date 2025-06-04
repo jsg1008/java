@@ -18,6 +18,7 @@ class Queue4 {
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
+	private int num;
 
 //--- 실행시 예외: 큐가 비어있음 ---//
 	public class EmptyQueueException extends RuntimeException {
@@ -34,9 +35,15 @@ class Queue4 {
 	}
 
 //--- 생성자(constructor) ---//
-public Queue4(int maxlen) {
-
-}
+	public Queue4(int maxlen) {
+		num = front = rear = 0;
+		capacity = maxlen;
+		try {
+			que = new List<>[capacity];
+		} catch (OutofMemoryError e) {
+			capacity = 0;
+		}
+	}
 
 //--- 큐에 데이터를 인큐 ---//
 	public int enque(int x) throws OverflowQueueException {
@@ -91,7 +98,7 @@ public Queue4(int maxlen) {
 public class train_실습4_3_1정수선형큐_리스트 {
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
-		Queue4 oq = new Queue4(4); // 최대 64개를 인큐할 수 있는 큐
+		Queue4 oq = new Queue4(64); // 최대 64개를 인큐할 수 있는 큐
 		Random random = new Random();
 		int rndx = 0, p = 0;
 		while (true) {
@@ -105,7 +112,7 @@ public class train_실습4_3_1정수선형큐_리스트 {
 				System.out.print("입력데이터: (" + rndx +")");
 				try {
 					oq.enque(rndx);
-				} catch(Chap4_스택과큐.Queue4.OverflowQueueException e) {
+				} catch(Queue4.OverflowQueueException e) {
 					System.out.println("stack이 가득찼있습니다.");
 				}
 				break;
@@ -114,7 +121,7 @@ public class train_실습4_3_1정수선형큐_리스트 {
 				try {
 					p = oq.deque();
 					System.out.println("디큐한 데이터는 " + p + "입니다.");
-				} catch (Chap4_스택과큐.Queue4.EmptyQueueException e) {
+				} catch (Queue4.EmptyQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;
@@ -123,7 +130,7 @@ public class train_실습4_3_1정수선형큐_리스트 {
 				try {
 					p = oq.peek();
 					System.out.println("피크한 데이터는 " + p + "입니다.");
-				} catch (Chap4_스택과큐.Queue4.EmptyQueueException e) {
+				} catch (Queue4.EmptyQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;

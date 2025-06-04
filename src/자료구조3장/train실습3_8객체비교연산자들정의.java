@@ -36,17 +36,44 @@ class PhyscData3 {
 	}
 }
 
-class NameHeightVision implements Comparator<PhyscData3>{
-	
 
+class NameHeightVision implements Comparator<PhyscData3>{
+
+	@Override
+	public int compare(PhyscData3 o1, PhyscData3 o2) {
+		int result = o1.getName().compareTo(o2.getName());
+		if (result==0) {
+			result = Integer.compare(o1.getHeight(), o2.getHeight());
+			if (result==0) {
+				result = Double.compare(o1.getVision(), o2.getVision());
+			}
+		}
+		return result;
+	}
 }
 class NameOrder implements Comparator<PhyscData3>{
+
+	@Override
+	public int compare(PhyscData3 o1, PhyscData3 o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
 
 }
 class HeightOrder implements Comparator<PhyscData3>{
 
+	@Override
+	public int compare(PhyscData3 o1, PhyscData3 o2) {
+//		return o1.getHeight()>o2.getHeight()? 0 : o1.getHeight()<o1.getHeight()? -1 : 0 ;
+		return Integer.compare(o1.getHeight(), o2.getHeight());
+	}
+
 }
 class VisionOrder implements Comparator<PhyscData3>{
+
+	@Override
+	public int compare(PhyscData3 o1, PhyscData3 o2) {
+		return o1.getVision()>o2.getVision()? 0 : o1.getVision() < o2.getVision()? -1 : 0 ; 
+	}
 
 }
 public class train실습3_8객체비교연산자들정의 {	
@@ -81,6 +108,13 @@ public class train실습3_8객체비교연산자들정의 {
 			}
 		});
 		showData("name로 정렬후 객체 배열", data);
+	}
+
+	private static void showData(String string, PhyscData3[] data) {
+		System.out.println(string + " : ");
+		for (PhyscData3 ttt: data) {
+			System.out.println(ttt+" ");
+		}
 	}
 
 }

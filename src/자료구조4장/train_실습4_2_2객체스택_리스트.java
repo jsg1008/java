@@ -35,7 +35,7 @@ class Point2 {
 	}
 }
 
-class objectStack{
+class ObjectStack{
 	/*
 	 * 정수스택 버젼을 참조하여 예외처리 완성
 	 * --- 실행시 예외: 스택이 비어있음 ---
@@ -59,7 +59,7 @@ class objectStack{
 	private int top; // 스택 포인터
 
 //--- 생성자(constructor) ---//
-	public objectStack(int capacity) {
+	public ObjectStack(int capacity) {
 		this.capacity=capacity;
 		this.top = 0;
 		this.data = new ArrayList<>(capacity);
@@ -89,10 +89,8 @@ class objectStack{
 
 //--- 스택을 비움 ---//
 	public void clear() {
-		while(top>0) {
-			data.remove(0);
-			top--;
-		}
+		data.clear();
+		top=0;
 	}
 
 //--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
@@ -139,9 +137,9 @@ class objectStack{
 	
 public class train_실습4_2_2객체스택_리스트 {
 
-	public static void main(String[] args) throws objectStack.EmptyGenericStackException {
+	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
-		objectStack s = new objectStack(8); // 최대 8 개를 push할 수 있는 stack
+		ObjectStack s = new ObjectStack(8); // 최대 8 개를 push할 수 있는 stack
 		Random random = new Random();
 		int rndx = 0, rndy = 0;
 		Point2 p = null;
@@ -162,7 +160,7 @@ public class train_실습4_2_2객체스택_리스트 {
 				p = new Point2(rndx,rndy);
 				try {
 					s.push(p);
-				} catch(objectStack.OverflowGenericStackException e) {
+				} catch(ObjectStack.OverflowGenericStackException e) {
 					System.out.println("stack이 가득찼습니다.");
 				}
 				break;
@@ -171,7 +169,7 @@ public class train_실습4_2_2객체스택_리스트 {
 				try {
 					p = s.pop();
 					System.out.println("pop한 데이터는 " + p + "입니다.");
-				} catch(objectStack.EmptyGenericStackException e) {
+				} catch(ObjectStack.EmptyGenericStackException e) {
 					System.out.println("stack이 비어있습니다.");
 				}
 				break;
@@ -180,7 +178,7 @@ public class train_실습4_2_2객체스택_리스트 {
 				try {
 					p = s.peek();
 					System.out.println("peek한 데이터는 " + p + "입니다.");
-				} catch (objectStack.EmptyGenericStackException e) {
+				} catch (ObjectStack.EmptyGenericStackException e) {
 					System.out.println("stack이 비어있습니다.");
 				}
 				break;
