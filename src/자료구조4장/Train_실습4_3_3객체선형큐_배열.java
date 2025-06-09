@@ -24,8 +24,6 @@ class Point3 {
 	public String toString() {
 		return "Point3 [ix=" + ix + ", iy=" + iy + "]";
 	}
-	
-	
 }
 
 //int형 고정 길이 큐

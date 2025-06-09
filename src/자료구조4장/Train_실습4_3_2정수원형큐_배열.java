@@ -150,7 +150,6 @@ public int getFront() {
 			}
 		}
 	}
-	
 }
 public class Train_실습4_3_2정수원형큐_배열 {
 	public static void main(String[] args) {
